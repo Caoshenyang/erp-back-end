@@ -30,7 +30,9 @@ public class R {
      */
     private R() {}
 
-    //成功静态方法
+    /**
+     * 成功静态方法
+     */
     public static R ok() {
         R r = new R();
         r.setSuccess(true);
@@ -39,7 +41,9 @@ public class R {
         return r;
     }
 
-    //失败静态方法
+    /**
+     * 失败静态方法
+     */
     public static R error() {
         R r = new R();
         r.setSuccess(false);

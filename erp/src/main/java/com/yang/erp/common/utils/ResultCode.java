@@ -3,7 +3,7 @@ package com.yang.erp.common.utils;
 /**
  * @author caoshenyang
  */
-public interface ResultCode {
+public class ResultCode {
 
     /**
      * 成功
