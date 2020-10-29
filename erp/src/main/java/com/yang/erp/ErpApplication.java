@@ -5,6 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import springfox.documentation.annotations.ApiIgnore;
 
 /**
  * 启动类
@@ -19,6 +20,7 @@ public class ErpApplication {
         SpringApplication.run(ErpApplication.class, args);
     }
 
+    @ApiIgnore
     @GetMapping("/")
     public String index(){
         return "redirect:http://localhost:8080/erp/swagger-ui.html";

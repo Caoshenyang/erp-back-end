@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yang.erp.module.crm.mapper.CustomerMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.yang.erp.module.crm.entity.Customer">
+        <id column="customer_id" property="customerId" />
+        <result column="customer_name" property="customer_name" />
+        <result column="customer_code" property="customer_code" />
+        <result column="type" property="type" />
+        <result column="business_tele" property="businessTele" />
+        <result column="fax" property="fax" />
+        <result column="postcode" property="postcode" />
+        <result column="email" property="email" />
+        <result column="address" property="address" />
+        <result column="description" property="description" />
+        <result column="customer_from" property="customer_from" />
+        <result column="delivery_address" property="deliveryAddress" />
+        <result column="contact_id" property="contactId" />
+        <result column="creator" property="creator" />
+        <result column="create_date" property="createDate" />
+        <result column="status" property="status" />
+        <result column="flag" property="flag" />
+        <result column="operator" property="operator" />
+        <result column="update_date" property="updateDate" />
+        <result column="back_date" property="backDate" />
+        <result column="salesman" property="salesman" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        customer_id, name, code, type, business_tele, fax, postcode, email, address, description, from, delivery_address, contact_id, creator, create_date, status, flag, operator, update_date, back_date, salesman
+    </sql>
+
+</mapper>
