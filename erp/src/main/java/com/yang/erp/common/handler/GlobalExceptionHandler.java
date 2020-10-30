@@ -2,6 +2,7 @@ package com.yang.erp.common.handler;
 
 import com.yang.erp.common.exception.ErpException;
 import com.yang.erp.common.utils.R;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -12,10 +13,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * @author caoshenyang
  */
 @ControllerAdvice
+@Slf4j
 public class GlobalExceptionHandler {
     @ExceptionHandler(Exception.class)
     @ResponseBody
     public R error(Exception e) {
+        log.error(e.getMessage());
         e.printStackTrace();
         return R.error();
 
