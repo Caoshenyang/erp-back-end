@@ -24,7 +24,7 @@ public class CustomerServiceImpl extends ServiceImpl<CustomerMapper, Customer> i
     @Override
     public void pageQuery(Page<Customer> pageParam, CustomerQuery customerQuery) {
         QueryWrapper<Customer> queryWrapper = new QueryWrapper<>();
-        queryWrapper.orderByAsc("customer_id");
+        queryWrapper.orderByAsc("id");
         if (customerQuery == null) {
             baseMapper.selectPage(pageParam, queryWrapper);
             return;

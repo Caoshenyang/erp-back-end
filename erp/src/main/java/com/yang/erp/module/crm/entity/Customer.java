@@ -1,11 +1,13 @@
 package com.yang.erp.module.crm.entity;
 
-import com.baomidou.mybatisplus.annotation.TableName;
-import com.baomidou.mybatisplus.annotation.IdType;
+
+import com.baomidou.mybatisplus.annotation.*;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
+
 import java.util.Date;
-import com.baomidou.mybatisplus.annotation.TableId;
+
 import java.io.Serializable;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -17,19 +19,19 @@ import lombok.EqualsAndHashCode;
  * </p>
  *
  * @author caoshenyang
- * @since 2020-10-29
+ * @since 2020-10-30
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
 @TableName("erp_customer")
-@ApiModel(value="Customer对象", description="客户表")
+@ApiModel(value = "Customer对象", description = "客户表")
 public class Customer extends Model<Customer> {
 
     private static final long serialVersionUID = 1L;
 
     @ApiModelProperty(value = "客户ID")
-    @TableId(value = "customer_id", type = IdType.AUTO)
-    private Integer customerId;
+    @TableId(value = "id", type = IdType.AUTO)
+    private Integer id;
 
     @ApiModelProperty(value = "客户名称")
     private String customerName;
@@ -70,20 +72,23 @@ public class Customer extends Model<Customer> {
     @ApiModelProperty(value = "创建人,外键参考用户表")
     private Integer creator;
 
-    @ApiModelProperty(value = "创建时间")
-    private Date createDate;
-
     @ApiModelProperty(value = "审核状态")
     private Integer status;
 
     @ApiModelProperty(value = "删除状态  0未删除  1已删除(回收站中使用)")
+    @TableLogic
     private Integer flag;
 
     @ApiModelProperty(value = "操作人员,外键参考用户表")
     private Integer operator;
 
+    @ApiModelProperty(value = "创建时间")
+    @TableField(fill = FieldFill.INSERT)
+    private Date gmtCreate;
+
     @ApiModelProperty(value = "最后修改时间")
-    private Date updateDate;
+    @TableField(fill = FieldFill.INSERT_UPDATE)
+    private Date gmtModified;
 
     @ApiModelProperty(value = "返回至公共客户池时间")
     private Date backDate;
@@ -94,7 +99,7 @@ public class Customer extends Model<Customer> {
 
     @Override
     protected Serializable pkVal() {
-        return this.customerId;
+        return this.id;
     }
 
 }

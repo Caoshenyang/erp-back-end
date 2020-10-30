@@ -8,10 +8,7 @@ import com.yang.erp.module.crm.service.CustomerService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -42,6 +39,43 @@ public class CustomerController {
         List<Customer> records = pageParam.getRecords();
         long total = pageParam.getTotal();
         return R.ok().data("total", total).data("rows", records);
+    }
+
+    @ApiOperation(value = "新增客户")
+    @PostMapping
+    public R save(
+            @ApiParam(name = "customer", value = "客户对象", required = true)
+            @RequestBody Customer customer) {
+        customerServiceImpl.save(customer);
+        return R.ok();
+    }
+
+    @ApiOperation(value = "根据id查询")
+    @GetMapping("{id}")
+    public R getById(
+            @ApiParam(name = "id", value = "客户id", required = true)
+            @PathVariable String id) {
+        Customer customer = customerServiceImpl.getById(id);
+        return R.ok().data("item", customer);
+    }
+
+    @ApiOperation(value = "根据id修改")
+    @PutMapping("{id}")
+    public R updateById(
+            @ApiParam(name = "id", value = "客户id", required = true)
+            @PathVariable String id,
+            @ApiParam(name = "customer", value = "客户对象", required = true)
+            @RequestBody Customer customer) {
+        customer.setId(Integer.parseInt(id));
+        customerServiceImpl.updateById(customer);
+        return R.ok();
+    }
+
+    @ApiOperation(value = "根据id删除客户")
+    @DeleteMapping("{id}")
+    public R removeCustomer(@PathVariable String id) {
+        customerServiceImpl.removeById(id);
+        return R.ok();
     }
 }
 

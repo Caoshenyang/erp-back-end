@@ -20,7 +20,7 @@ public class MySqlCodeGenerator {
                 .setAuthor("caoshenyang")//设置作者
                 .setOpen(false)//生成后打开资源管理器
                 //生成路径(一般都是生成在此项目的src/main/java下面)
-                .setOutputDir("D:\\erp-back-end\\erp" + "/src/main/java")
+                .setOutputDir("D:\\erp-back-end\\erp" + "/src/test/java")
                 .setFileOverride(false)//第二次生成会把第一次生成的覆盖掉
                 .setIdType(IdType.AUTO)//主键策略
                 .setServiceName("%sService")//生成的service接口名字首字母是否为I，这样设置就没有I
