@@ -30,8 +30,8 @@ public class Customer extends Model<Customer> {
     private static final long serialVersionUID = 1L;
 
     @ApiModelProperty(value = "客户ID")
-    @TableId(value = "id", type = IdType.AUTO)
-    private Integer id;
+    @TableId(value = "customer_id", type = IdType.AUTO)
+    private Integer customerId;
 
     @ApiModelProperty(value = "客户名称")
     private String customerName;
@@ -99,7 +99,7 @@ public class Customer extends Model<Customer> {
 
     @Override
     protected Serializable pkVal() {
-        return this.id;
+        return this.customerId;
     }
 
 }

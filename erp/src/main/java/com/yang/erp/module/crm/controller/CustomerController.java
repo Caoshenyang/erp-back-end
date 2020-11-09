@@ -4,6 +4,7 @@ package com.yang.erp.module.crm.controller;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.yang.erp.common.utils.R;
 import com.yang.erp.module.crm.entity.Customer;
+import com.yang.erp.module.crm.query.CustomerQuery;
 import com.yang.erp.module.crm.service.CustomerService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -28,14 +29,16 @@ public class CustomerController {
     private CustomerService customerServiceImpl;
 
     @ApiOperation(value = "分页客户列表")
-    @GetMapping("{page}/{limit}")
+    @PostMapping("{page}/{limit}")
     public R pageList(
             @ApiParam(name = "page", value = "当前页码", required = true)
             @PathVariable Long page,
             @ApiParam(name = "limit", value = "每页记录数", required = true)
-            @PathVariable Long limit) {
+            @PathVariable Long limit,
+            @ApiParam(name = "customerQuery", value = "查询对象", required = false)
+            @RequestBody CustomerQuery customerQuery) {
         Page<Customer> pageParam = new Page<>(page, limit);
-        customerServiceImpl.pageQuery(pageParam, null);
+        customerServiceImpl.pageQuery(pageParam, customerQuery);
         List<Customer> records = pageParam.getRecords();
         long total = pageParam.getTotal();
         return R.ok().data("total", total).data("rows", records);
@@ -66,7 +69,7 @@ public class CustomerController {
             @PathVariable String id,
             @ApiParam(name = "customer", value = "客户对象", required = true)
             @RequestBody Customer customer) {
-        customer.setId(Integer.parseInt(id));
+        customer.setCustomerId(Integer.parseInt(id));
         customerServiceImpl.updateById(customer);
         return R.ok();
     }
