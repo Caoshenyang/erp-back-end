@@ -14,11 +14,11 @@ CREATE TABLE `erp_customer` (
   `delivery_address` varchar(400) DEFAULT NULL COMMENT '收货地址',
   `contact_id` int(11) DEFAULT NULL COMMENT '联系人',
   `creator` int(11) DEFAULT NULL COMMENT '创建人,外键参考用户表',
-  `create_date` timestamp NULL DEFAULT NULL COMMENT '创建时间',
   `status` int(1) DEFAULT '1' COMMENT '审核状态',
   `flag` int(1) DEFAULT '0' COMMENT '删除状态  0未删除  1已删除(回收站中使用)',
   `operator` int(11) DEFAULT NULL COMMENT '操作人员,外键参考用户表',
-  `update_date` timestamp NULL DEFAULT NULL COMMENT '最后修改时间',
+  `gmt_create` timestamp NULL DEFAULT NULL COMMENT '创建时间',
+  `gmt_modified` timestamp NULL DEFAULT NULL COMMENT '最后修改时间',
   `back_date` timestamp NULL DEFAULT NULL COMMENT '返回至公共客户池时间',
   `salesman` int(11) NOT NULL COMMENT '客户对应的业务员',
   PRIMARY KEY (`customer_id`)

@@ -34,9 +34,9 @@ public class MySqlCodeGenerator {
         DataSourceConfig dataSourceConfig = new DataSourceConfig();
         dataSourceConfig.setDbType(DbType.MYSQL)//数据库类型
                 .setDriverName("com.mysql.cj.jdbc.Driver")
-                .setUrl("jdbc:mysql://localhost:3306/erp?useUnicode=true&&characterEncoding=utf8&&useSSL=false&&serverTimezone=Asia/Shanghai")
+                .setUrl("jdbc:mysql://192.168.3.10:3306/erp?useUnicode=true&&characterEncoding=utf8&&useSSL=false&&serverTimezone=Asia/Shanghai")
                 .setUsername("root")
-                .setPassword("root");
+                .setPassword("123456");
         //3、策略配置
         StrategyConfig strategyConfig = new StrategyConfig();
         strategyConfig.setCapitalMode(true)//开启全局大写命名

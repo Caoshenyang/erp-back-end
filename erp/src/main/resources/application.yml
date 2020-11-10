@@ -13,8 +13,8 @@ spring:
   # 数据库连接
   datasource:
     username: root
-    password: root
-    url: jdbc:mysql://localhost:3306/erp?useUnicode=true&&characterEncoding=utf8&&useSSL=false&&serverTimezone=Asia/Shanghai
+    password: 123456
+    url: jdbc:mysql://192.168.3.10:3306/erp?useUnicode=true&&characterEncoding=utf8&&useSSL=false&&serverTimezone=Asia/Shanghai
     driver-class-name: com.mysql.cj.jdbc.Driver
   # 配置返回时间格式
   jackson:

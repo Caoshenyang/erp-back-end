@@ -24,7 +24,7 @@ public class CustomerServiceImpl extends ServiceImpl<CustomerMapper, Customer> i
     @Override
     public void pageQuery(Page<Customer> pageParam, CustomerQuery customerQuery) {
         QueryWrapper<Customer> queryWrapper = new QueryWrapper<>();
-        queryWrapper.orderByAsc("id");
+        queryWrapper.orderByAsc("customer_id");
         if (customerQuery == null) {
             baseMapper.selectPage(pageParam, queryWrapper);
             return;
@@ -40,10 +40,10 @@ public class CustomerServiceImpl extends ServiceImpl<CustomerMapper, Customer> i
             queryWrapper.eq("type", type);
         }
         if (!StringUtils.isEmpty(begin)) {
-            queryWrapper.ge("create_date", begin);
+            queryWrapper.ge("gmt_create", begin);
         }
         if (!StringUtils.isEmpty(end)) {
-            queryWrapper.le("create_date", end);
+            queryWrapper.le("gmt_create", end);
         }
         baseMapper.selectPage(pageParam, queryWrapper);
     }
