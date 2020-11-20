@@ -1,0 +1,22 @@
+CREATE TABLE `co_company` (
+	`id` VARCHAR ( 40 ) NOT NULL COMMENT 'ID',
+	`name` VARCHAR ( 255 ) NOT NULL COMMENT '公司名称',
+	`manager_id` VARCHAR ( 255 ) NOT NULL COMMENT '企业登录账号ID',
+	`version` VARCHAR ( 255 ) DEFAULT NULL COMMENT '当前版本',
+	`renewal_date` datetime DEFAULT NULL COMMENT '续期时间',
+	`expiration_date` datetime DEFAULT NULL COMMENT '到期时间',
+	`company_area` VARCHAR ( 255 ) DEFAULT NULL COMMENT '公司地区',
+	`company_address` text COMMENT '公司地址',
+	`business_license_id` VARCHAR ( 255 ) DEFAULT NULL COMMENT '营业执照-图片ID',
+	`legal_representative` VARCHAR ( 255 ) DEFAULT NULL COMMENT '法人代表',
+	`company_phone` VARCHAR ( 255 ) DEFAULT NULL COMMENT '公司电话',
+	`mailbox` VARCHAR ( 255 ) DEFAULT NULL COMMENT '邮箱',
+	`company_size` VARCHAR ( 255 ) DEFAULT NULL COMMENT '公司规模',
+	`industry` VARCHAR ( 255 ) DEFAULT NULL COMMENT '所属行业',
+	`remarks` text COMMENT '备注',
+	`audit_state` VARCHAR ( 255 ) DEFAULT NULL COMMENT '审核状态',
+	`state` TINYINT ( 2 ) NOT NULL DEFAULT '1' COMMENT '状态',
+	`balance` DOUBLE NOT NULL COMMENT '当前余额',
+	`gmt_create` datetime NOT NULL COMMENT '创建时间',
+	`gmt_modified` datetime NOT NULL COMMENT '更新时间'
+) ENGINE = INNODB DEFAULT CHARSET = utf8mb4;
