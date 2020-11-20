@@ -1,9 +1,6 @@
 package com.yang.company.entity;
 
-import com.baomidou.mybatisplus.annotation.FieldFill;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableLogic;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.*;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
 import java.util.Date;
 import java.io.Serializable;
@@ -29,6 +26,7 @@ public class Company extends Model<Company> {
     private static final long serialVersionUID = 1L;
 
     @ApiModelProperty(value = "ID")
+    @TableId(value = "id", type = IdType.ID_WORKER_STR)
     private String id;
 
     @ApiModelProperty(value = "公司名称")
@@ -96,7 +94,7 @@ public class Company extends Model<Company> {
 
     @Override
     protected Serializable pkVal() {
-        return null;
+        return this.id;
     }
 
 }

@@ -33,11 +33,9 @@ public class MySqlCodeGenerator {
                 //第二次生成会把第一次生成的覆盖掉
                 .setFileOverride(false)
                 //主键策略
-                .setIdType(IdType.ID_WORKER)
+                .setIdType(IdType.ID_WORKER_STR)
                 //生成的service接口名字首字母是否为I，这样设置就没有I
                 .setServiceName("%sService")
-                //主键策略
-                .setIdType(IdType.AUTO)
                 //定义生成的实体类中日期类型
                 .setDateType(DateType.ONLY_DATE)
                 //开启swagger2模式
