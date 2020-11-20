@@ -18,5 +18,6 @@ CREATE TABLE `co_company` (
 	`state` TINYINT ( 2 ) NOT NULL DEFAULT '1' COMMENT '状态',
 	`balance` DOUBLE NOT NULL COMMENT '当前余额',
 	`gmt_create` datetime NOT NULL COMMENT '创建时间',
-	`gmt_modified` datetime NOT NULL COMMENT '更新时间'
+	`gmt_modified` datetime NOT NULL COMMENT '更新时间',
+    `is_deleted` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '逻辑删除 1（true）已删除， 0（false）未删除'
 ) ENGINE = INNODB DEFAULT CHARSET = utf8mb4;

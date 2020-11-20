@@ -1,6 +1,7 @@
-package com.yang.common.exception;
+package com.yang.common.handler;
 
 import com.yang.common.entity.Result;
+import com.yang.common.exception.ErpException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -22,6 +23,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(value = Exception.class)
     public Result error(HttpServletRequest request, HttpServletResponse response, Exception e) throws IOException {
         e.printStackTrace();
+        log.error(e.getMessage());
         if (e.getClass() == ErpException.class) {
             ErpException ce = (ErpException) e;
             return new Result(ce.getCode());

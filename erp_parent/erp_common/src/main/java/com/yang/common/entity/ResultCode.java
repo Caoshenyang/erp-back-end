@@ -1,5 +1,7 @@
 package com.yang.common.entity;
 
+import io.swagger.annotations.ApiModelProperty;
+
 /**
  * @Description: 返回码定义
  * @author: caoshenyang
@@ -20,17 +22,13 @@ public enum ResultCode {
     //---权限操作返回码----
     //---其他操作返回码----
 
-    /**
-     * 操作是否成功
-     */
+    @ApiModelProperty(value = "操作是否成功")
     boolean success;
-    /**
-     * 操作代码
-     */
+
+    @ApiModelProperty(value = "操作代码")
     int code;
-    /**
-     * 提示信息
-     */
+
+    @ApiModelProperty(value = "提示信息")
     String message;
 
     ResultCode(boolean success, int code, String message) {
