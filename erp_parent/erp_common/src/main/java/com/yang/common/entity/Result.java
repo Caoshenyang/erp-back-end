@@ -1,26 +1,26 @@
 package com.yang.common.entity;
 
+import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
+
 /**
  * @Description: 返回结果实体类
  * @author: caoshenyang
  * @date: 2020.11.20
  */
+@Data
 public class Result {
-    /**
-     * 是否成功
-     */
+
+    @ApiModelProperty(value = "是否成功")
     private boolean success;
-    /**
-     * 返回码
-     */
+
+    @ApiModelProperty(value = "返回码")
     private Integer code;
-    /**
-     * 返回信息
-     */
+
+    @ApiModelProperty(value = "返回信息")
     private String message;
-    /**
-     * 返回数据
-     */
+
+    @ApiModelProperty(value = "返回数据")
     private Object data;
 
     public Result(ResultCode code) {

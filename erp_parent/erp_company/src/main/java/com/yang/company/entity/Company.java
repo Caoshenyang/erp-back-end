@@ -1,6 +1,9 @@
 package com.yang.company.entity;
 
-import com.baomidou.mybatisplus.annotation.*;
+import com.baomidou.mybatisplus.annotation.FieldFill;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableLogic;
+import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
 import java.util.Date;
 import java.io.Serializable;
@@ -11,11 +14,11 @@ import lombok.EqualsAndHashCode;
 
 /**
  * <p>
- * 
+ *   公司类
  * </p>
  *
  * @author caoshenyang
- * @since 2020-11-20
+ * @since 2020-11-23
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
@@ -26,7 +29,6 @@ public class Company extends Model<Company> {
     private static final long serialVersionUID = 1L;
 
     @ApiModelProperty(value = "ID")
-    @TableId(value = "id", type = IdType.ID_WORKER_STR)
     private String id;
 
     @ApiModelProperty(value = "公司名称")
@@ -92,9 +94,10 @@ public class Company extends Model<Company> {
     @TableLogic
     private Boolean isDeleted;
 
+
     @Override
     protected Serializable pkVal() {
-        return this.id;
+        return null;
     }
 
 }

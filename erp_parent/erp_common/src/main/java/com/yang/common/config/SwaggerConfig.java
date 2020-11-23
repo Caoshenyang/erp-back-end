@@ -3,8 +3,10 @@ package com.yang.common.config;
 import com.google.common.base.Predicates;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import springfox.documentation.RequestHandler;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
+import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.service.ApiInfo;
 import springfox.documentation.service.Contact;
 import springfox.documentation.spi.DocumentationType;
@@ -35,7 +37,7 @@ public class SwaggerConfig {
                 .title("ERP管理系统")
                 .description("本文档描述了ERP管理系统接口定义")
                 .version("1.0")
-                .contact(new Contact("caoshenyang", "https://github.com/Phoebuszzz/erp-back-end", "2417254000@qq.com"))
+                .contact(new Contact("caoshenyang", "https://github.com/Caoshenyang/erp-back-end", "2417254000@qq.com"))
                 .build();
     }
 }

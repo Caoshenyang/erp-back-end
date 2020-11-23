@@ -12,8 +12,8 @@ import org.springframework.context.annotation.Configuration;
  * @date: 2020.11.20
  */
 @Configuration
-@MapperScan("com.yang.education.mapper")
-public class EducationConfig {
+@MapperScan("com.yang")
+public class PageConfig {
     @Bean
     public PaginationInterceptor paginationInterceptor() {
         PaginationInterceptor paginationInterceptor = new PaginationInterceptor();

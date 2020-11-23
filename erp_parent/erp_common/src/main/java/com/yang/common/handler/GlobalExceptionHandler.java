@@ -16,9 +16,10 @@ import java.io.IOException;
  * @author: caoshenyang
  * @date: 2020.11.20
  */
-@ControllerAdvice
 @Slf4j
+@ControllerAdvice
 public class GlobalExceptionHandler {
+
     @ResponseBody
     @ExceptionHandler(value = Exception.class)
     public Result error(HttpServletRequest request, HttpServletResponse response, Exception e) throws IOException {

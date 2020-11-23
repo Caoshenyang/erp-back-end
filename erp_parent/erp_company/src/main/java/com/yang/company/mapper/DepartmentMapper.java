@@ -1,7 +1,8 @@
 package com.yang.company.mapper;
 
-import com.yang.company.entity.Company;
+import com.yang.company.entity.Department;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Mapper;
 
 /**
  * <p>
@@ -11,6 +12,6 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * @author caoshenyang
  * @since 2020-11-23
  */
-public interface CompanyMapper extends BaseMapper<Company> {
+public interface DepartmentMapper extends BaseMapper<Department> {
 
 }

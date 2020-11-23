@@ -1,6 +1,6 @@
 # 服务端口
 server:
-  port: 8080
+  port: 9001
 # 服务名
 spring:
   application:
@@ -11,7 +11,7 @@ spring:
   # 数据库连接
   datasource:
     username: root
-    password: 123456
+    password: root
     url: jdbc:mysql://localhost:3306/erp?useUnicode=true&&characterEncoding=utf8&&useSSL=false&&serverTimezone=Asia/Shanghai
     driver-class-name: com.mysql.cj.jdbc.Driver
   jackson:

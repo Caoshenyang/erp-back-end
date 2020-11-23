@@ -4,7 +4,6 @@
     <modelVersion>4.0.0</modelVersion>
     <modules>
         <module>erp_common</module>
-        <module>erp_common_model</module>
         <module>erp_company</module>
     </modules>
     <parent>
@@ -32,6 +31,7 @@
         <springfox-swagger2.version>2.7.0</springfox-swagger2.version>
         <springfox-swagger-ui.version>2.7.0</springfox-swagger-ui.version>
         <aliyun-sdk-oss.version>2.8.3</aliyun-sdk-oss.version>
+        <fastjson.version>1.2.47</fastjson.version>
     </properties>
 
     <dependencyManagement>
@@ -78,6 +78,12 @@
                 <groupId>com.aliyun.oss</groupId>
                 <artifactId>aliyun-sdk-oss</artifactId>
                 <version>${aliyun-sdk-oss.version}</version>
+            </dependency>
+            <!-- fastjson json转换器 -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${fastjson.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
