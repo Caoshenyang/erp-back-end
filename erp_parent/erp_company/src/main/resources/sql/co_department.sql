@@ -13,4 +13,4 @@ CREATE TABLE `co_department` (
 	`gmt_modified` datetime NOT NULL COMMENT '更新时间',
 	`is_deleted` TINYINT ( 1 ) UNSIGNED NOT NULL DEFAULT '0' COMMENT '逻辑删除 1（true）已删除， 0（false）未删除',
 PRIMARY KEY ( `id` )
-) ENGINE = INNODB DEFAULT CHARSET = utf8mb4
+) ENGINE = INNODB DEFAULT CHARSET = utf8mb4 COMMENT='部门表';

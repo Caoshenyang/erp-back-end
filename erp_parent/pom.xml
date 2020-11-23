@@ -5,6 +5,7 @@
     <modules>
         <module>erp_common</module>
         <module>erp_company</module>
+        <module>erp_system</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
