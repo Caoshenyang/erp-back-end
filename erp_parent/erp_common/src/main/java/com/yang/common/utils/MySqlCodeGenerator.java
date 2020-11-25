@@ -29,7 +29,7 @@ public class MySqlCodeGenerator {
                 //生成后打开资源管理器
                 .setOpen(false)
                 //生成路径(一般都是生成在此项目的src/main/java下面,根据具体情况更改)
-                .setOutputDir("D:\\erp-back-end\\erp_parent\\erp_company" + "/src/main/java")
+                .setOutputDir("D:\\erp-back-end\\erp_parent\\erp_system" + "/src/main/java")
                 //第二次生成会把第一次生成的覆盖掉
                 .setFileOverride(false)
                 //主键策略
@@ -60,7 +60,7 @@ public class MySqlCodeGenerator {
                 //下划线到驼峰的命名方式
                 .setNaming(NamingStrategy.underline_to_camel)
                 //表名前缀
-                .setTablePrefix("co_")
+                .setTablePrefix("sys_")
                 //使用lombok
                 .setEntityLombokModel(true)
                 //restful api风格控制器
@@ -68,12 +68,12 @@ public class MySqlCodeGenerator {
                 //url中驼峰转连接符
                 .setControllerMappingHyphenStyle(true)
                 //逆向工程使用的表
-                .setInclude("co_company");
+                .setInclude("sys_user","sys_role","sys_permission","sys_role_permission","sys_user_role");
         //4、包名策略配置
         PackageConfig packageConfig = new PackageConfig();
         //设置包名的parent
         packageConfig.setParent("com.yang")
-                .setModuleName("company")
+                .setModuleName("system")
                 .setMapper("mapper")
                 .setService("service")
                 .setController("controller")
