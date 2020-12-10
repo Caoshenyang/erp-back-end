@@ -3,6 +3,8 @@ package com.yang.common.entity;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
+import java.util.Map;
+
 /**
  * @Description: 返回结果实体类
  * @author: caoshenyang

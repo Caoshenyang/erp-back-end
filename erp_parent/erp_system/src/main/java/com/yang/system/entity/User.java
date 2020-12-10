@@ -1,11 +1,11 @@
 package com.yang.system.entity;
 
-import com.baomidou.mybatisplus.annotation.TableName;
-import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.*;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
+
 import java.util.Date;
-import com.baomidou.mybatisplus.annotation.TableId;
 import java.io.Serializable;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -17,12 +17,12 @@ import lombok.EqualsAndHashCode;
  * </p>
  *
  * @author caoshenyang
- * @since 2020-11-25
+ * @since 2020-11-26
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
 @TableName("sys_user")
-@ApiModel(value="User对象", description="用户表")
+@ApiModel(value = "User对象", description = "用户表")
 public class User extends Model<User> {
 
     private static final long serialVersionUID = 1L;
@@ -49,7 +49,7 @@ public class User extends Model<User> {
     @ApiModelProperty(value = "部门ID")
     private String departmentId;
 
-    @ApiModelProperty(value = "入职时间")
+    @ApiModelProperty(value = "入职时间", example = "2020-10-30 11:53:03")
     private Date timeOfEntry;
 
     @ApiModelProperty(value = "聘用形式")
@@ -64,7 +64,7 @@ public class User extends Model<User> {
     @ApiModelProperty(value = "工作城市")
     private String workingCity;
 
-    @ApiModelProperty(value = "转正时间")
+    @ApiModelProperty(value = "转正时间", example = "2020-10-30 11:53:03")
     private Date correctionTime;
 
     @ApiModelProperty(value = "在职状态 1.在职 2.离职")
@@ -79,13 +79,16 @@ public class User extends Model<User> {
     @ApiModelProperty(value = "部门名称")
     private String departmentName;
 
-    @ApiModelProperty(value = "创建时间")
+    @ApiModelProperty(value = "创建时间", example = "2020-10-30 11:53:03")
+    @TableField(fill = FieldFill.INSERT)
     private Date gmtCreate;
 
-    @ApiModelProperty(value = "更新时间")
+    @ApiModelProperty(value = "更新时间", example = "2020-10-30 11:53:03")
+    @TableField(fill = FieldFill.INSERT_UPDATE)
     private Date gmtModified;
 
     @ApiModelProperty(value = "逻辑删除 1（true）已删除， 0（false）未删除")
+    @TableLogic
     private Boolean isDeleted;
 
 

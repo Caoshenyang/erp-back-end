@@ -1,11 +1,9 @@
 package com.yang.company.entity.vo;
 
-import com.baomidou.mybatisplus.annotation.FieldFill;
-import com.baomidou.mybatisplus.annotation.TableField;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
-import java.util.Date;
+import java.io.Serializable;
 
 /**
  * @Description: 公司查询对象
@@ -13,7 +11,9 @@ import java.util.Date;
  * @date: 2020.11.23
  */
 @Data
-public class CompanyQuery {
+public class CompanyQuery implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @ApiModelProperty(value = "公司名称")
     private String name;

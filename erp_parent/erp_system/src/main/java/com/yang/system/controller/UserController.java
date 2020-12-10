@@ -1,104 +1,88 @@
 package com.yang.system.controller;
 
 
-import com.atguigu.aclservice.entity.User;
-import com.atguigu.aclservice.service.RoleService;
-import com.atguigu.aclservice.service.UserService;
-import com.atguigu.commonutils.MD5;
-import com.atguigu.commonutils.R;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.yang.common.entity.PageResult;
+import com.yang.common.entity.Result;
+import com.yang.common.entity.ResultCode;
+import com.yang.system.entity.User;
+import com.yang.system.entity.vo.UserQuery;
+import com.yang.system.service.UserService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * <p>
  * 用户表 前端控制器
  * </p>
  *
- * @author testjava
- * @since 2020-01-12
+ * @author caoshenyang
+ * @since 2020-11-26
  */
 @RestController
-@RequestMapping("/admin/acl/user")
-//@CrossOrigin
+@RequestMapping("/system/user")
 public class UserController {
 
     @Autowired
-    private UserService userService;
+    private UserService userServiceImpl;
 
-    @Autowired
-    private RoleService roleService;
-
-    @ApiOperation(value = "获取管理用户分页列表")
-    @GetMapping("{page}/{limit}")
-    public R index(
-            @ApiParam(name = "page", value = "当前页码", required = true)
+    @ApiOperation(value = "用户分页查询")
+    @PostMapping(value = "pageUserCondition/{page}/{limit}")
+    public Result pageUserCondition(
+            @ApiParam(name = "page", value = "当前页", required = true)
             @PathVariable Long page,
-
-            @ApiParam(name = "limit", value = "每页记录数", required = true)
+            @ApiParam(name = "limit", value = "每页显示几条", required = true)
             @PathVariable Long limit,
-
-            @ApiParam(name = "courseQuery", value = "查询对象", required = false)
-             User userQueryVo) {
+            @ApiParam(name = "userQuery", value = "查询条件对象", required = false)
+            @RequestBody(required = false)
+                    UserQuery userQuery) {
         Page<User> pageParam = new Page<>(page, limit);
-        QueryWrapper<User> wrapper = new QueryWrapper<>();
-        if(!StringUtils.isEmpty(userQueryVo.getUsername())) {
-            wrapper.like("username",userQueryVo.getUsername());
-        }
-
-        IPage<User> pageModel = userService.page(pageParam, wrapper);
-        return R.ok().data("items", pageModel.getRecords()).data("total", pageModel.getTotal());
+        userServiceImpl.pageQuery(pageParam, userQuery);
+        List<User> records = pageParam.getRecords();
+        long total = pageParam.getTotal();
+        return new Result(ResultCode.SUCCESS, new PageResult<User>(total, records));
     }
 
-    @ApiOperation(value = "新增管理用户")
-    @PostMapping("save")
-    public R save(@RequestBody User user) {
-        user.setPassword(MD5.encrypt(user.getPassword()));
-        userService.save(user);
-        return R.ok();
+    @ApiOperation(value = "根据用户Id查询用户信息")
+    @GetMapping("getUserInfoById/{id}")
+    public Result getUser(
+            @ApiParam(name = "id", value = "用户对象id", required = true)
+            @PathVariable String id) {
+        User user = userServiceImpl.getById(id);
+        return new Result(ResultCode.SUCCESS, user);
     }
 
-    @ApiOperation(value = "修改管理用户")
-    @PutMapping("update")
-    public R updateById(@RequestBody User user) {
-        userService.updateById(user);
-        return R.ok();
+    @ApiOperation(value = "新增用户")
+    @PostMapping("addUser")
+    public Result pageListUser(
+            @ApiParam(name = "User", value = "用户对象", required = true)
+            @RequestBody User user) {
+        boolean save = userServiceImpl.save(user);
+        return save ? Result.SUCCESS() : Result.ERROR();
     }
 
-    @ApiOperation(value = "删除管理用户")
-    @DeleteMapping("remove/{id}")
-    public R remove(@PathVariable String id) {
-        userService.removeById(id);
-        return R.ok();
+    @ApiOperation(value = "修改用户")
+    @PutMapping("updateUser")
+    public Result updateUser(
+            @ApiParam(name = "User", value = "用户对象", required = true)
+            @RequestBody User User) {
+        boolean b = userServiceImpl.updateById(User);
+        return b ? Result.SUCCESS() : Result.ERROR();
     }
 
-    @ApiOperation(value = "根据id列表删除管理用户")
-    @DeleteMapping("batchRemove")
-    public R batchRemove(@RequestBody List<String> idList) {
-        userService.removeByIds(idList);
-        return R.ok();
+    @ApiOperation(value = "逻辑删除用户")
+    @RequestMapping(value = "{id}", method = RequestMethod.DELETE)
+    public Result removeUser(
+            @ApiParam(name = "id", value = "用户Id", required = true)
+            @PathVariable String id) {
+        boolean b = userServiceImpl.removeById(id);
+        return b ? Result.SUCCESS() : Result.ERROR();
     }
 
-    @ApiOperation(value = "根据用户获取角色数据")
-    @GetMapping("/toAssign/{userId}")
-    public R toAssign(@PathVariable String userId) {
-        Map<String, Object> roleMap = roleService.findRoleByUserId(userId);
-        return R.ok().data(roleMap);
-    }
 
-    @ApiOperation(value = "根据用户分配角色")
-    @PostMapping("/doAssign")
-    public R doAssign(@RequestParam String userId,@RequestParam String[] roleId) {
-        roleService.saveUserRoleRealtionShip(userId,roleId);
-        return R.ok();
-    }
 }
 

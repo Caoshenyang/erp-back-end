@@ -1,7 +1,9 @@
 package com.yang.company.service;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.yang.company.entity.Department;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.yang.company.entity.vo.DepartmentQuery;
 
 /**
  * <p>
@@ -13,4 +15,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface DepartmentService extends IService<Department> {
 
+    void pageQueryDepartment(Page<Department> pageParam, DepartmentQuery departmentQuery);
 }

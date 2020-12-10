@@ -10,7 +10,7 @@ import io.swagger.annotations.ApiModelProperty;
 public enum ResultCode {
 
     //---系统成功返回码-----
-    SUCCESS(true, 10000, "操作成功！"),
+    SUCCESS(true, 20000, "操作成功！"),
 
     //---系统错误返回码-----
     FAIL(false, 10001, "操作失败"),

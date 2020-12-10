@@ -1,7 +1,6 @@
 package com.yang.company.controller;
 
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.yang.common.entity.PageResult;
 import com.yang.common.entity.Result;
@@ -12,12 +11,10 @@ import com.yang.company.service.CompanyService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.concurrent.CompletableFuture;
 
 /**
  * <p>
@@ -34,7 +31,7 @@ import java.util.concurrent.CompletableFuture;
 public class CompanyController {
 
     @Autowired
-    private CompanyService companyServiceImpl;
+    private CompanyService companyService;
 
     @ApiOperation(value = "公司分页条件查询")
     @PostMapping(value = "pageCompanyCondition/{page}/{limit}")
@@ -47,7 +44,7 @@ public class CompanyController {
             @RequestBody(required = false)
                     CompanyQuery companyQuery) {
         Page<Company> pageParam = new Page<>(page, limit);
-        companyServiceImpl.pageQuery(pageParam, companyQuery);
+        companyService.pageQuery(pageParam, companyQuery);
         List<Company> records = pageParam.getRecords();
         long total = pageParam.getTotal();
         return new Result(ResultCode.SUCCESS, new PageResult<Company>(total, records));
@@ -58,7 +55,7 @@ public class CompanyController {
     public Result getCompany(
             @ApiParam(name = "id", value = "公司对象id", required = true)
             @PathVariable String id) {
-        Company Company = companyServiceImpl.getById(id);
+        Company Company = companyService.getById(id);
         return new Result(ResultCode.SUCCESS, Company);
     }
 
@@ -67,7 +64,7 @@ public class CompanyController {
     public Result pageListCompany(
             @ApiParam(name = "Company", value = "公司对象", required = true)
             @RequestBody Company Company) {
-        boolean save = companyServiceImpl.save(Company);
+        boolean save = companyService.save(Company);
         return save ? Result.SUCCESS() : Result.ERROR();
     }
 
@@ -76,7 +73,7 @@ public class CompanyController {
     public Result removeCompany(
             @ApiParam(name = "id", value = "公司Id", required = true)
             @PathVariable String id) {
-        boolean b = companyServiceImpl.removeById(id);
+        boolean b = companyService.removeById(id);
         return b ? Result.SUCCESS() : Result.ERROR();
     }
 
@@ -85,7 +82,7 @@ public class CompanyController {
     public Result updateCompany(
             @ApiParam(name = "Company", value = "公司对象", required = true)
             @RequestBody Company Company) {
-        boolean b = companyServiceImpl.updateById(Company);
+        boolean b = companyService.updateById(Company);
         return b ? Result.SUCCESS() : Result.ERROR();
     }
 
