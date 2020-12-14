@@ -19,4 +19,7 @@ public class DepartmentQuery implements Serializable {
     @ApiModelProperty(value = "企业ID")
     private String companyId;
 
+    @ApiModelProperty(value = "部门名称")
+    private String name;
+
 }

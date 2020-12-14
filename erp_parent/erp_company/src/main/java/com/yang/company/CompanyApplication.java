@@ -11,8 +11,7 @@ import org.springframework.context.annotation.ComponentScan;
  * @date: 2020.11.20
  */
 @SpringBootApplication
-@MapperScan(basePackages = "com.yang")
-@ComponentScan(basePackages = "com.yang")
+@ComponentScan(basePackages = {"com.yang"})
 public class CompanyApplication {
 
     public static void main(String[] args) {

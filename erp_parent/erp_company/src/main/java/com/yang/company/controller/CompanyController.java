@@ -31,7 +31,7 @@ import java.util.List;
 public class CompanyController {
 
     @Autowired
-    private CompanyService companyService;
+    private CompanyService companyServiceImpl;
 
     @ApiOperation(value = "公司分页条件查询")
     @PostMapping(value = "pageCompanyCondition/{page}/{limit}")
@@ -44,7 +44,7 @@ public class CompanyController {
             @RequestBody(required = false)
                     CompanyQuery companyQuery) {
         Page<Company> pageParam = new Page<>(page, limit);
-        companyService.pageQuery(pageParam, companyQuery);
+        companyServiceImpl.pageQuery(pageParam, companyQuery);
         List<Company> records = pageParam.getRecords();
         long total = pageParam.getTotal();
         return new Result(ResultCode.SUCCESS, new PageResult<Company>(total, records));
@@ -55,16 +55,16 @@ public class CompanyController {
     public Result getCompany(
             @ApiParam(name = "id", value = "公司对象id", required = true)
             @PathVariable String id) {
-        Company Company = companyService.getById(id);
-        return new Result(ResultCode.SUCCESS, Company);
+        Company company = companyServiceImpl.getById(id);
+        return new Result(ResultCode.SUCCESS, company);
     }
 
     @ApiOperation(value = "新增公司")
     @PostMapping("addCompany")
     public Result pageListCompany(
             @ApiParam(name = "Company", value = "公司对象", required = true)
-            @RequestBody Company Company) {
-        boolean save = companyService.save(Company);
+            @RequestBody Company company) {
+        boolean save = companyServiceImpl.save(company);
         return save ? Result.SUCCESS() : Result.ERROR();
     }
 
@@ -73,7 +73,7 @@ public class CompanyController {
     public Result removeCompany(
             @ApiParam(name = "id", value = "公司Id", required = true)
             @PathVariable String id) {
-        boolean b = companyService.removeById(id);
+        boolean b = companyServiceImpl.removeById(id);
         return b ? Result.SUCCESS() : Result.ERROR();
     }
 
@@ -81,8 +81,8 @@ public class CompanyController {
     @PutMapping("updateCompany")
     public Result updateCompany(
             @ApiParam(name = "Company", value = "公司对象", required = true)
-            @RequestBody Company Company) {
-        boolean b = companyService.updateById(Company);
+            @RequestBody Company company) {
+        boolean b = companyServiceImpl.updateById(company);
         return b ? Result.SUCCESS() : Result.ERROR();
     }
 
